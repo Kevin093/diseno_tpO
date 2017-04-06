@@ -48,6 +48,13 @@ public class Alumno
 	public void setGithub_user(String github_user) {
 		this.github_user = github_user;
 	}
+	// ********************************************************
+	// ** Actions
+	// ********************************************************	
+
+	public void addAssignments(Alumno studentWithAssignments) {
+		this.setAssignments(studentWithAssignments.getAssignments());
+	}
 
 	
 }

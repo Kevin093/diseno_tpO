@@ -34,8 +34,8 @@ public class Login extends SimpleWindow<LoginVM>{
 		new Button(LoginPanel)
 			.setCaption("Validar token")
 			.onClick(()-> this.getModelObject().validar());
-		new TextBox(LoginPanel).bindValueToProperty("resultado");
-		new Label(LoginPanel).setText(" v1");
+		new Label(LoginPanel).bindValueToProperty("fnameOfStudent");
+	//	new Label(LoginPanel).setText("fnameOfStudent");
 	}
 
 	@Override

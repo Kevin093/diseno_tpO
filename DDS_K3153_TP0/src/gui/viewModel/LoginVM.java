@@ -2,12 +2,25 @@ package gui.viewModel;
 
 import org.uqbar.commons.utils.Observable;
 
+import domain.*;
+
 @Observable
 public class LoginVM {
 
 	private String token;
 	private String resultado;
+	private Alumno student;
+
+	private String fnameOfStudent;
 	
+	public Alumno getStudent() {
+		return student;
+	}
+
+	
+	public String nameOfStudent(){
+		return fnameOfStudent = student.getFirst_name();
+	}
 	
 	public String getToken() {
 		return token;
@@ -24,13 +37,16 @@ public class LoginVM {
 		this.resultado = resultado;
 	}
 	public void validar() {
-		if (token.equals("1234")){
-			this.resultado = "Ok";
-		}
-		else
-		{
-		this.resultado = "Bad";
-		}	
+		student = NotitasServiceConnect.alumnoDesdeWeb(token);
+		this.nameOfStudent();
+	}
+
+	public String getFnameOfStudent() {
+		return fnameOfStudent;
+	}
+
+	public void setFnameOfStudent(String fnameOfStudent) {
+		this.fnameOfStudent = fnameOfStudent;
 	}
 
 

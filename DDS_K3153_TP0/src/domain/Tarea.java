@@ -6,9 +6,10 @@ import org.uqbar.commons.utils.Observable;
 
 public class Tarea
 {
-	private Calificacion grade;
+	public int id;
+	private String title;
+	private TipoCalificacion typeOfgrade;
 	private String typeOfTask;
-	private String nameOfTask;
 	
 	
 	// ********************************************************
@@ -16,12 +17,12 @@ public class Tarea
 	// ********************************************************		
 	
 	
-	public Calificacion getgrade() {
-		return grade;
+	public TipoCalificacion getTypeOfgrade() {
+		return typeOfgrade;
 	}
 
-	public void setgrade(Calificacion grade) {
-		this.grade = grade;
+	public void setTypeOfgrade(TipoCalificacion typeOfgrade) {
+		this.typeOfgrade = typeOfgrade;
 	}
 
 	public String getTypeOfTask() {
@@ -32,12 +33,12 @@ public class Tarea
 		this.typeOfTask = typeOfTask;
 	}
 
-	public String getNameOfTask() {
-		return nameOfTask;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setNameOfTask(String nameOfTask) {
-		this.nameOfTask = nameOfTask;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	
+
 }	

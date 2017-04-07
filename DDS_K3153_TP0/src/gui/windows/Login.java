@@ -55,14 +55,14 @@ public class Login extends SimpleWindow<LoginVM>{
 			.onClick(()-> this.getModelObject().misAsignaciones())
 			;
 		new Label(dataForm).setText(" ");
-		new Label(dataForm).setText("Asignación");
+		new Label(dataForm).setText("Asignacion");
 		Selector<Asignacion> selectorAsignaciones = new Selector<Asignacion>(dataForm).allowNull(true);
 		selectorAsignaciones.bindItemsToProperty("asignaciones");
 		selectorAsignaciones.bindValueToProperty("asignacionElegida");
 		
-		new Label(dataForm).setText("Nombre de la asignación: ");
+		new Label(dataForm).setText("Nombre de la asignacion: ");
 		new Label(dataForm).bindValueToProperty("asignacionElegida");
-		new Label(dataForm).setText("Descripción de la asignación: ");
+		new Label(dataForm).setText("Descripcion de la asignacion: ");
 		new Label(dataForm).bindValueToProperty("descripcionDeAsignacionElegida");	
 		new Label(dataForm).setText("Notas");
 		Selector<Calificacion> selectorNotas = new Selector<Calificacion>(dataForm).allowNull(true);

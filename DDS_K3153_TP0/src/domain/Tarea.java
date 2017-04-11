@@ -4,19 +4,16 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 
-public class Tarea
-{
+public class Tarea {
 	public int id;
 	private String title;
 	private TipoCalificacion typeOfgrade;
 	private String typeOfTask;
-	
-	
+
 	// ********************************************************
 	// ** Attributes
-	// ********************************************************		
-	
-	
+	// ********************************************************
+
 	public TipoCalificacion getTypeOfgrade() {
 		return typeOfgrade;
 	}
@@ -41,4 +38,4 @@ public class Tarea
 		this.title = title;
 	}
 
-}	
+}

@@ -6,23 +6,24 @@ import org.uqbar.commons.utils.Observable;
 
 @Observable
 
-public class Asignacion
-{
+public class Asignacion {
 	private int id;
 	private String title;
 	private String description;
-	private ArrayList <Calificacion> grades;
-	public Asignacion(){}
-	
+	private ArrayList<Calificacion> grades;
+
+	public Asignacion() {
+	}
+
 	// ********************************************************
 	// ** Attributes
-	// ********************************************************		
+	// ********************************************************
 
-	public ArrayList <Calificacion> getGrades() {
+	public ArrayList<Calificacion> getGrades() {
 		return grades;
 	}
 
-	public void setGrades(ArrayList <Calificacion> grades) {
+	public void setGrades(ArrayList<Calificacion> grades) {
 		this.grades = grades;
 	}
 
@@ -49,10 +50,10 @@ public class Asignacion
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	@Override
 	public String toString() {
 		return title;
 	}
-	
+
 }
-	

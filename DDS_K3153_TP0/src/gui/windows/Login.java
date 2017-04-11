@@ -19,7 +19,7 @@ import gui.viewModel.LoginVM;
 import domain.*;
 
 @SuppressWarnings("serial")
-public class Login extends SimpleWindow<LoginVM>{
+public class Login extends SimpleWindow<LoginVM> {
 
 	public Login(WindowOwner parent) {
 		super(parent, new LoginVM());
@@ -28,18 +28,15 @@ public class Login extends SimpleWindow<LoginVM>{
 	@Override
 	public void createContents(Panel LoginPanel) {
 		this.configureLayout(LoginPanel);
-	    this.createMainTemplate(LoginPanel);
+		this.createMainTemplate(LoginPanel);
 		this.setTitle("Lector de Notas");
 		LoginPanel.setLayout(new VerticalLayout());
 		new Label(LoginPanel).setText("Login de usuario");
 		new Label(LoginPanel).setText("Ingrese el token");
 
-		new TextBox(LoginPanel).setWidth(350)
-		.bindValueToProperty("token");
-		new Button(LoginPanel)
-			.setCaption("Validar el token")
-			.onClick(()-> this.getModelObject().validar());
-		
+		new TextBox(LoginPanel).setWidth(350).bindValueToProperty("token");
+		new Button(LoginPanel).setCaption("Validar el token").onClick(() -> this.getModelObject().validar());
+
 		Panel dataForm = new Panel(LoginPanel);
 		dataForm.setLayout(new ColumnLayout(2));
 		new Label(dataForm).setText("Bienvenido");
@@ -50,20 +47,17 @@ public class Login extends SimpleWindow<LoginVM>{
 		new Label(dataForm).bindValueToProperty("gitUserOfStudent");
 		new Label(dataForm).setText(" ");
 		new Label(dataForm).setText(" ");
-		new Button (dataForm)
-			.setCaption("Mis Asignaciones")
-			.onClick(()-> this.getModelObject().misAsignaciones())
-			;
+		new Button(dataForm).setCaption("Mis Asignaciones").onClick(() -> this.getModelObject().misAsignaciones());
 		new Label(dataForm).setText(" ");
 		new Label(dataForm).setText("Asignacion");
 		Selector<Asignacion> selectorAsignaciones = new Selector<Asignacion>(dataForm).allowNull(true);
 		selectorAsignaciones.bindItemsToProperty("asignaciones");
 		selectorAsignaciones.bindValueToProperty("asignacionElegida");
-		
+
 		new Label(dataForm).setText("Nombre de la asignacion: ");
 		new Label(dataForm).bindValueToProperty("asignacionElegida");
 		new Label(dataForm).setText("Descripcion de la asignacion: ");
-		new Label(dataForm).bindValueToProperty("descripcionDeAsignacionElegida");	
+		new Label(dataForm).bindValueToProperty("descripcionDeAsignacionElegida");
 		new Label(dataForm).setText("Notas");
 		Selector<Calificacion> selectorNotas = new Selector<Calificacion>(dataForm).allowNull(true);
 		selectorNotas.bindItemsToProperty("notasDeAsignacionElegida");
@@ -71,20 +65,20 @@ public class Login extends SimpleWindow<LoginVM>{
 		new Label(dataForm).setText("Valor Nota: ");
 		new Label(dataForm).bindValueToProperty("valorNotaElegida");
 		new Label(dataForm).setText("Aprueba: ");
-		new Label(dataForm).bindValueToProperty("condicion");		
-		
+		new Label(dataForm).bindValueToProperty("condicion");
+
 	}
 
 	@Override
 	protected void addActions(Panel actionsPanel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void createFormPanel(Panel mainPanel) {
 		// TODO Auto-generated method stub
-		
-	}	
+
+	}
 
 }

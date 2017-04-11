@@ -5,11 +5,10 @@ public class Calificacion {
 	private String value;
 	private String created_at;
 	private String updated_at;
-	
+
 	// ********************************************************
 	// ** Attributes
-	// ********************************************************			
-	
+	// ********************************************************
 
 	public String getValue() {
 		return value;

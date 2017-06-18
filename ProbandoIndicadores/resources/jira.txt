@@ -1,0 +1,7 @@
+- Exceptions en MasterMV -> Casi listo. En proceso.
+- Borrar setters de mas -> Ok
+- Seleccionar nombre mas expresivo para account connect -> OK
+- Hacer bindings sin la creacion de variables adicionales -> Chequeando pero hay errores
+- Completar test de account connect -> Falta
+- Testing de masterVM -> Falta
+- Ver de agregar csv o no -> Pensar y ver. No es tan facil como con el json

@@ -1,0 +1,62 @@
+[
+{
+	"title": "HP",
+	"description": "Printers",
+	"accounts": 
+	[
+		{
+		"name": "EDS",
+		"accountPeriod":
+		[
+		{
+		"year": "2017",
+		"value": "2500"}
+		]
+		},
+		{
+		"name": "EDP",
+		"accountPeriod":
+		[
+		{
+		"year": "2017",
+		"value": "2503"
+		},
+		{
+		"year": "2016",
+		"value": "2504"
+		}
+		]
+		}
+	]
+},
+{
+	"title": "CISCO",
+	"description": "Networking",
+	"accounts": 
+	[
+		{
+		"name": "EDS",
+		"accountPeriod":
+		[
+		{
+		"year": "2017",
+		"value": "2679"}
+		]
+		},
+		{
+		"name": "EDI",
+		"accountPeriod":
+		[
+		{
+		"year": "2017",
+		"value": "2543"
+		},
+		{
+		"year": "2016",
+		"value": "2502"
+		}
+		]
+		}
+	]
+}
+]

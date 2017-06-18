@@ -1,0 +1,92 @@
+/**
+ * JavaCC template file created by SF JavaCC plugin 1.5.17+ wizard for JavaCC 1.5.0+
+ */
+
+PARSER_BEGIN(ExpressionValidator)
+public class ExpressionValidator
+{
+}
+
+PARSER_END(ExpressionValidator)
+
+SKIP :
+{
+  "\r"
+| "\t"
+| "\n"
+}
+
+TOKEN :
+{
+  < SPACE : " " >
+}
+
+TOKEN :
+{
+  < EXPRESION :
+    < VALUE > (< SPACE > < OPERATOR > < SPACE > < VALUE >)* 
+  >
+}
+
+TOKEN :
+{
+  < VALUE :
+    "0"
+  | [ "1"-"9" ] ([ "0"-"9" ])*
+  | ["a"-"z","A"-"Z"] ( ["a"-"z","A"-"Z"] )*
+  | ["a"-"z","A"-"Z","0"-"9"] ( ["a"-"z","A"-"Z","0"-"9"] )*>
+}
+
+TOKEN :
+{
+  < OPERATOR : /* OPERATORS */
+    "+"
+  | "-"
+  | "*"
+  | "/" >
+| 
+  < LEFT_PAREN : "(" >
+| 
+  < RIGHT_PAREN : ")" >
+}
+
+int start() :
+{}
+{
+  wff() // "well formed formula"  
+  {
+    return 0; // returns 0 on successful parse
+  }
+}
+
+void wff() :
+{}
+{
+  term()
+}
+
+void term() :
+{}
+{
+  symbol()
+| 
+  < LEFT_PAREN > wff() < RIGHT_PAREN >
+}
+
+void binary_operator() :
+{}
+{
+  < SPACE >
+}
+
+void symbol() :
+{
+  Token t;
+}
+{
+  t = < EXPRESION >
+  {
+    System.out.println("matched TIPOOK: " + t);
+    System.out.println(t.toString());
+  }
+}

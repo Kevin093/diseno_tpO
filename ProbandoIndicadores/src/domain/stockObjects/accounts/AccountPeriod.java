@@ -1,7 +1,7 @@
-import domain.stockObjects.indicator.operatings.Operating;
+package domain.stockObjects.accounts;
 
-public class AccountPeriod implements Operating {
-	private Integer value;
+public class AccountPeriod {
+	private int value;
 	private int year;
 	public AccountPeriod(){
 		this.setValue(0);
@@ -13,7 +13,7 @@ public class AccountPeriod implements Operating {
 		this.setYear(year);
 	}
 	
-	public Integer getValue() {
+	public int getValue() {
 		return value;
 	}
 
@@ -32,4 +32,4 @@ public class AccountPeriod implements Operating {
 		this.year = year;
 	}
 
-}
+	}

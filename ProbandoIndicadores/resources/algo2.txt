@@ -1,0 +1,208 @@
+package domain.stockObjects.indicator;
+
+import java.util.List;
+
+public class Indicator implements Operation {
+	private String function;
+	private String name;
+	public List<Operation> operations;
+
+	public Indicator() {
+		this.setName("");
+		this.setFunction("");
+		this.setOperations(null);
+	}
+
+	public Indicator(String name, String function, List<Operation> operations) {
+		this.setName(name);
+		this.setFunction(function);
+		this.setOperations(operations);
+	}
+
+	// Main Methods
+	// https://stackoverflow.com/questions/2605032/is-there-an-eval-function-in-java
+	public int calculateValue() {
+		int acumulador = 0;
+		int j = 0;
+		int i = 1;
+		acumulador = this.operations.get(j).calculateValue();
+		// this.operations.remove(0);
+		j = j + 2;
+		while (this.operations.size() > j) {
+			Operation operation = this.operations.get(j);
+			// this.operations.remove(j);
+			j = j + 2;
+
+			Operation operator = this.operations.get(i);
+			acumulador = operator.calculateValue(acumulador, operation.calculateValue());
+			// this.operations.remove(i);
+			i = i + 2;
+		}
+		return acumulador;
+
+	}
+
+	public int calculateResultFromAnIndicator(Indicator indicator, int accountPeriodValue) {
+		// if (indicator != null && indicator !=
+		// indicator.getAnotherIndicator()) {
+		// return calculateIndicatorResult(this.getAnotherIndicator(),
+		// accountPeriodValue);
+		//
+		// }
+		return 0;
+	}
+
+	// Auxiliary Methos
+
+	public int useOperator(int value1, String operator1, int value2) {
+
+		switch (operator1) {
+		case "+":
+			return value1 + value2;
+		case "-":
+			return value1 - value2;
+		case ":":
+			return value1 / value2;
+		default:
+			return value1 * value2;
+		}
+	}
+
+	public void setAccountValue(int value) {
+		for (int i = 0; this.operations.size() > i; i++) {
+			Operation operation = this.operations.get(i);
+			if (operation.getClass() == OperationAccount.class) {
+				OperationAccount opac = (OperationAccount) (operation);
+				opac.setValue(value);
+			}
+		}
+	}
+
+	public int calcProcedence() {
+		int indicatorValue = 0;
+		int acumulator = 0;
+		int operationPositionCounter = 0;
+		int operatorPositionCounter = 1;
+		int k = 0;
+		indicatorValue = this.operations.get(operationPositionCounter).calculateValue();
+		operationPositionCounter = incrementPositionCounter(operationPositionCounter);
+		int listOperationsSize = this.operations.size();
+		while (listOperationsSize > operationPositionCounter) {
+			Operation operator = this.operations.get(operatorPositionCounter);
+			if (operator.getClass() == OperatorDivision.class || operator.getClass() == OperatorMultiplication.class) {
+				Operation operation = this.operations.get(operationPositionCounter);
+				operationPositionCounter = incrementPositionCounter(operationPositionCounter);
+				indicatorValue = operator.calculateValue(indicatorValue, operation.calculateValue());
+				operatorPositionCounter = incrementPositionCounter(operatorPositionCounter);
+			} else {
+				Operation operatorAnt = this.operations.get(operatorPositionCounter);
+				if (listOperationsSize-1 > operatorPositionCounter + 2) {
+					operator = this.operations.get(operatorPositionCounter + 2);
+				} else {
+					operator = null;
+				}
+				if (operator != null && (operator.getClass() == OperatorDivision.class
+						|| operator.getClass() == OperatorMultiplication.class)) {
+					Operation operation = this.operations.get(operationPositionCounter);
+					Operation opeation2 = this.operations.get(operationPositionCounter + 2);
+					int value = operation.calculateValue();
+					int value2 = opeation2.calculateValue();
+					acumulator = operator.calculateValue(value, value2);
+					Operation nextOperator;
+					if (listOperationsSize-1 > (operatorPositionCounter + 4 + k)) {
+					nextOperator = this.operations.get(operatorPositionCounter + 4 + k);}else{nextOperator = null;}
+					if(nextOperator != null && (nextOperator.getClass() == OperatorDivision.class
+							|| nextOperator.getClass() == OperatorMultiplication.class)){
+					int aux = this.operations.get(operationPositionCounter+ 4 + k).calculateValue();
+					acumulator = nextOperator.calculateValue(acumulator, aux);
+					operatorPositionCounter = operatorPositionCounter + 6 + k;
+					operationPositionCounter = operationPositionCounter + 6 + k;
+					indicatorValue = operatorAnt.calculateValue(indicatorValue,acumulator);
+					k = k + 2;
+}
+					else{
+						indicatorValue = operatorAnt.calculateValue(indicatorValue,acumulator);
+						operatorPositionCounter = operatorPositionCounter + 4 + k;
+						operationPositionCounter = operationPositionCounter + 4 + k;
+						k = k + 2;
+
+					}
+				} else {
+					Operation operation = this.operations.get(operationPositionCounter);
+					operationPositionCounter = incrementPositionCounter(operationPositionCounter);
+					indicatorValue = operatorAnt.calculateValue(indicatorValue, operation.calculateValue());
+					operatorPositionCounter = incrementPositionCounter(operatorPositionCounter);
+				}
+			}
+		}
+		return indicatorValue;
+
+	}
+
+	public int incrementPositionCounter(int positionCounter) {
+		return positionCounter = positionCounter + 2;
+	}
+	// public void completeIndicator(String operator1, String operator2, int
+	// value, int id_ind, Indicator anotherInd) {
+	// this.setAnotherIndicator(anotherInd);
+	// this.setOperator1(operator1);
+	// this.setOperator2(operator2);
+	// this.setValue(value);
+	// this.setId_ind(id_ind);
+	// }
+
+	// public void eraseInformation() {
+	// this.setAnotherIndicator(null);
+	// this.setOperator1("");
+	// this.setOperator2("");
+	// this.setValue(0);
+	// this.setId_ind(0);
+	// this.setName("");
+	// this.setFunction("");
+	// }
+
+	// public boolean isEmpty() {
+	// return (this.getAnotherIndicator() == null && this.getOperator1() == ""
+	// && this.getOperator2() == ""
+	// && this.getValue() == 0 && this.getName() == "" && this.getFunction() ==
+	// "");
+	// }
+
+	// Setters getters
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getFunction() {
+		return function;
+	}
+
+	public void setFunction(String function) {
+		this.function = function;
+	}
+
+	public List<Operation> getOperations() {
+		return operations;
+	}
+
+	public void setOperations(List<Operation> operations) {
+		this.operations = operations;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+	@Override
+	public int calculateValue(int value, int value2) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
